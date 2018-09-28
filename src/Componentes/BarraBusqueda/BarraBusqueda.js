@@ -4,7 +4,7 @@ class BarraBusqueda extends Component {
   render() {
     return (
       <div>
-        <form class="card card-sm">
+        <form class="card card-sm mt-2">
           <div class="card-body row no-gutters align-items-center">
               <div class="col">
                   <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Busca tus libros favoritos"/>
