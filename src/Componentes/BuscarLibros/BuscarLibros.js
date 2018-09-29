@@ -13,17 +13,16 @@ class BuscarLibros extends Component {
           let listaLibros = null
           if (libros) {
             listaLibros = libros.data.items.map(libro => {
-              {console.log(libro.volumeInfo.title)}
+              // {console.log(libro.volumeInfo.title)}
               return (
-                <Libro>
+                <Libro
                   imagen={libro.volumeInfo.imageLinks.thumbnail}
                   descripcion={libro.volumeInfo.description}
                   titulo={libro.volumeInfo.title}
                   autor={libro.volumeInfo.authors[0]}
                   editorial={libro.volumeInfo.publisher}
                   key={libro.id}
-                </Libro>
-                
+                />
               )
             })
           }
