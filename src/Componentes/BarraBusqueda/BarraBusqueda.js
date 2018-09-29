@@ -58,7 +58,7 @@ class BarraBusqueda extends Component {
     return (
       <div>
         <form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
-					<div class="card-header">
+					<div className="card-header">
 					<h4 style={{float: 'left'}}>Búsqueda</h4>
 					<i 
 						className="fas fa-sort-down"

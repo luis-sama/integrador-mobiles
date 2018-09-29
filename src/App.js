@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import NotFound from './Componentes/NotFound/NotFound';
+import './App.css';
 
 import Header from './Componentes/Header/Header';
 import BuscarLibros from './Componentes/BuscarLibros/BuscarLibros';
