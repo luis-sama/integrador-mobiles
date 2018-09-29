@@ -5,6 +5,7 @@ class BarraBusqueda extends Component {
 	constructor() {
 		super();
 		this.state = {
+			mostrarForm : true,
 			textoBusqueda: '',
 			filtro: '',
 			check1: false,
@@ -53,10 +54,18 @@ class BarraBusqueda extends Component {
 	}
 
 	render() {
+		const { mostrarForm } = this.state
     return (
       <div>
         <form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
-          <div className="card-body ">
+					<div class="card-header">
+					Búsqueda
+					<i 
+						className="fas fa-sort-down"
+						onClick={() => this.setState({mostrarForm:!mostrarForm})}
+					/>
+					</div>
+					{mostrarForm ? (<div className="card-body ">
 						<div className="row no-gutters align-items-center">
 							<div className="col">
 									<input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Busca tus libros favoritos" onChange={this.onBusquedaChange} />
@@ -65,21 +74,8 @@ class BarraBusqueda extends Component {
 									<button className="btn btn-lg btn-success">Buscar</button>
 							</div><br/>
 						</div>
-						<div className="row no-gutters align-items-center">
-							<div className="form-check">
-								<input type="checkbox" className="form-check-input" id="intitle" onChange={this.onCheckChange}/>
-								<label className="form-check-label" htmlFor="intitle">Por título</label>
-							</div>
-							<div className="form-check">
-								<input type="checkbox" className="form-check-input" id="inauthor" onChange={this.onCheckChange}/>
-								<label className="form-check-label" htmlFor="inauthor">Por autor</label>
-							</div>
-							<div className="form-check">
-								<input type="checkbox" className="form-check-input" id="subject" onChange={this.onCheckChange}/>
-								<label className="form-check-label" htmlFor="subject">Por genero</label>
-							</div>
-						</div>
-          </div>
+          </div>) : null}
+          
         </form>
       </div>
     )

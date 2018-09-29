@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import BarraBusqueda from '../BarraBusqueda/BarraBusqueda';
+import FormBusqueda from '../FormBusqueda/FormBusqueda';
 import Libro from '../Libro/Libro';
 
 class BuscarLibros extends Component {
@@ -11,6 +12,7 @@ class BuscarLibros extends Component {
       {id:2, imagen:"https://libretec.com/16221-large_default/1984-tapa-dura.jpg", descripcion:"", titulo:"1984", autor:"Ray Bradbury", editorial:"Lumen"}
     ]
   }
+
   render() {
     const listaLibros = this.state.libros.map(libro => {
       return(
@@ -26,7 +28,8 @@ class BuscarLibros extends Component {
     })
     return(
       <div>
-        <BarraBusqueda />
+        <BarraBusqueda/>
+        <FormBusqueda/>
         <div className="row">{listaLibros}</div>
       </div>
     )
