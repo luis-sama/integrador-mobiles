@@ -12,16 +12,18 @@ class BuscarLibros extends Component {
           const { libros } = value
           let listaLibros = null
           if (libros) {
-            listaLibros = libros.data.items.volumeInfo.map(libro => {
+            listaLibros = libros.data.items.map(libro => {
+              {console.log(libro.volumeInfo.title)}
               return (
                 <Libro>
-                  imagen={libro.imageLinks.thumbnail}
-                  descripcion={libro.description}
-                  titulo={libro.title}
-                  autor={libro.authors[0]}
-                  editorial={libro.publisher}
-                  {/* key={} */}
+                  imagen={libro.volumeInfo.imageLinks.thumbnail}
+                  descripcion={libro.volumeInfo.description}
+                  titulo={libro.volumeInfo.title}
+                  autor={libro.volumeInfo.authors[0]}
+                  editorial={libro.volumeInfo.publisher}
+                  key={libro.id}
                 </Libro>
+                
               )
             })
           }
@@ -29,6 +31,7 @@ class BuscarLibros extends Component {
             <div>
               <BarraBusqueda/>
               <FormBusqueda/>
+              {listaLibros}
             </div>
           )
         }}
