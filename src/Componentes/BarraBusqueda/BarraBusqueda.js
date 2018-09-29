@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-import axios from 'axios';
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 class BarraBusqueda extends Component {
 	constructor() {
 		super();
 		this.state = {
-			mostrarForm : true,
 			textoBusqueda: '',
-			filtro: '',
-			check1: false,
-			check2: false,
-			check3: false,
 		}
 	}
 
@@ -21,12 +16,11 @@ class BarraBusqueda extends Component {
 		})
 	}
 
-	handleBusqueda = () => {
-		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.filtro + ':' + this.state.textoBusqueda.split(' ').join('+'))
-    .then(response => console.log(response))
+	handleBusqueda = (dispatch) => {
+		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.textoBusqueda.split(' ').join('+'))
+		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))
+		
 	}
-
-	// onClick={this.onDeleteClick.bind(this, id, dispatch)}
 
 	render() {
 		return (
@@ -35,8 +29,8 @@ class BarraBusqueda extends Component {
 					const { barraBusquedaFlag, dispatch } = value;
 
 					return (
-						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
-							<div class="card-header">
+						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch)}>
+							<div className="card-header">
 							<h4 style={{float: 'left'}}>Búsqueda</h4>
 							<i 
 								className="fas fa-sort-down"

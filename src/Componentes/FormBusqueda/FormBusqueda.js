@@ -17,7 +17,7 @@ class FormBusqueda extends Component {
 
 					return (
 						<form className="card card-sm mb-1" >
-							<div class="card-header">
+							<div className="card-header">
 								<h4 style={{float: 'left'}}>Búsqueda avanzada</h4>
 								<i 
 									className="fas fa-sort-down"
@@ -35,9 +35,9 @@ class FormBusqueda extends Component {
 									<label style={{float: 'left'}}>Ingresá un autor</label>
 									<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Autor"/>
 								</div>
-								<div class="form-group">
+								<div className="form-group">
 									<label style={{float: 'left'}}>Género</label>
-									<select class="form-control" id="exampleFormControlSelect1">
+									<select className="form-control" id="exampleFormControlSelect1">
 										<option>Ciencia ficción</option>
 										<option>Acción</option>
 										<option>Policiales</option>

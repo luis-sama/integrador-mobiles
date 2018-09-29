@@ -10,6 +10,11 @@ const reducer = (state, action) => {
                 barraBusquedaFlag: !state.barraBusquedaFlag,
                 formBusquedaFlag: !state.formBusquedaFlag
             }
+        case 'GET_LIBROS':
+            return {
+                ...state,
+                libros: action.payload
+            }
         default:
             return state;
     }
@@ -18,7 +23,7 @@ export class Provider extends Component {
     state = {
         barraBusquedaFlag: true,
         formBusquedaFlag: false,
-        busquedaJson: [],
+        libros: null,
         dispatch: action => this.setState(state => reducer(state, action))
     }
 
