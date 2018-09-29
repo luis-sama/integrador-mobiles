@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Consumer } from '../../context';
 
 class BarraBusqueda extends Component {
 	constructor() {
@@ -25,61 +26,39 @@ class BarraBusqueda extends Component {
     .then(response => console.log(response))
 	}
 
-	onCheckChange = e => {
-		switch (e.target.id) {
-			case 'intitle':
-				this.setState({
-					check1: !this.state.check1,
-					filtro: 'intitle'
-				})
-				console.log('Check1: ' + !this.state.check1);
-				break;
-			case 'inauthor':
-				this.setState({
-					check2: !this.state.check2,
-					filtro: 'inauthor'
-				})
-				console.log('Check2: ' + !this.state.check2);
-				break;
-			case 'subject':
-				this.setState({
-					check3: !this.state.check3,
-					filtro: 'subject'
-				})
-				console.log('Check3: ' + !this.state.check3);
-				break;
-			default:
-				break;
-		}
-	}
+	// onClick={this.onDeleteClick.bind(this, id, dispatch)}
 
 	render() {
-		const { mostrarForm } = this.state
-    return (
-      <div>
-        <form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
-					<div class="card-header">
-					<h4 style={{float: 'left'}}>Búsqueda</h4>
-					<i 
-						className="fas fa-sort-down"
-						onClick={() => this.setState({mostrarForm:!mostrarForm})}
-						style={{float:'right'}}
-					/>
-					</div>
-					{mostrarForm ? (<div className="card-body ">
-						<div className="row no-gutters align-items-center">
-							<div className="col">
-									<input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Busca tus libros favoritos" onChange={this.onBusquedaChange} />
+		return (
+			<Consumer>
+				{value => {
+					const { barraBusquedaFlag, dispatch } = value;
+
+					return (
+						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
+							<div class="card-header">
+							<h4 style={{float: 'left'}}>Búsqueda</h4>
+							<i 
+								className="fas fa-sort-down"
+								onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}
+								style={{float:'right'}}
+							/>
 							</div>
-							<div className="col-auto">
-									<button className="btn btn-lg btn-success">Buscar</button>
-							</div><br/>
-						</div>
-          </div>) : null}
-          
-        </form>
-      </div>
-    )
+							{barraBusquedaFlag ? (<div className="card-body ">
+								<div className="row no-gutters align-items-center">
+									<div className="col">
+											<input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Busca tus libros favoritos" onChange={this.onBusquedaChange} />
+									</div>
+									<div className="col-auto">
+											<button className="btn btn-lg btn-success">Buscar</button>
+									</div><br/>
+								</div>
+							</div>) : null}
+						</form>
+					)
+				}}
+			</Consumer>
+		)
   }
 }
 
