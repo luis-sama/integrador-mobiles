@@ -59,10 +59,11 @@ class BarraBusqueda extends Component {
       <div>
         <form className="card card-sm mb-1" onSubmit={this.handleBusqueda}>
 					<div class="card-header">
-					Búsqueda
+					<h4 style={{float: 'left'}}>Búsqueda</h4>
 					<i 
 						className="fas fa-sort-down"
 						onClick={() => this.setState({mostrarForm:!mostrarForm})}
+						style={{float:'right'}}
 					/>
 					</div>
 					{mostrarForm ? (<div className="card-body ">
