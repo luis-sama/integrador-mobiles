@@ -17,7 +17,7 @@ class FormBusqueda extends Component {
 
 					return (
 						<form className="card card-sm mb-1" >
-							<div class="card-header">
+							<div className="card-header">
 								<h4 style={{float: 'left'}}>Búsqueda avanzada</h4>
 								<i 
 									className="fas fa-sort-down"

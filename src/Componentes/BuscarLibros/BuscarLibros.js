@@ -12,8 +12,13 @@ class BuscarLibros extends Component {
       {id:2, imagen:"https://libretec.com/16221-large_default/1984-tapa-dura.jpg", descripcion:"", titulo:"1984", autor:"Ray Bradbury", editorial:"Lumen"}
     ]
   }
-
+ 
   render() {
+    /*
+    * Acordate que la barra de busqueda tiene que devolver el GET de la lista de libros
+    * que coincidieron y en base a la data que te devuelve rellenar los campos de cada libro
+    * que ahora lo estamos haciendo con esta lista trucha de libros
+    */
     const listaLibros = this.state.libros.map(libro => {
       return(
         <Libro 
@@ -22,6 +27,7 @@ class BuscarLibros extends Component {
           titulo={libro.titulo}
           autor={libro.autor}
           editorial={libro.editorial}
+          id={libro.id}
           key={libro.id}
         />
       )
