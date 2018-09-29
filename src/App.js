@@ -6,6 +6,7 @@ import './App.css';
 import Header from './Componentes/Header/Header';
 import BuscarLibros from './Componentes/BuscarLibros/BuscarLibros';
 import Contacto from './Componentes/Contacto/Contacto';
+import CompartirLibro from './Componentes/CompartirLibro/CompartirLibro';
 import { Provider } from './context';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Switch>
                 <Route exact path="/" component={BuscarLibros}/>
                 <Route exact path="/contacto" component={Contacto} />
+                <Route exact path="/compartir-libro/:id" component={CompartirLibro} />
                 <Route component={NotFound} />
           </Switch>
         </div>

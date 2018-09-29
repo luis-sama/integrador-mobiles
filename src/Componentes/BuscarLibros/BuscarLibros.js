@@ -5,7 +5,6 @@ import Libro from '../Libro/Libro';
 import { Consumer } from '../../context';
 
 class BuscarLibros extends Component {
-
   render() {
     return (
       <Consumer>        
