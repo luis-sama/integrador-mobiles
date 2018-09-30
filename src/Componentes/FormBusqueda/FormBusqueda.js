@@ -41,13 +41,11 @@ class FormBusqueda extends Component {
 		if (this.state.textoBusquedaGenero !== '') {url += 'subject:' + this.state.textoBusquedaGenero}
 
 		if(url.charAt(url.length-1) === '+') {url = url.slice(0, -1)}
-		
+
 		url += '&filter=partial'
 		
 		axios.get(url) 
 		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
-
-		console.log(url)
 	}
 
 	render() {

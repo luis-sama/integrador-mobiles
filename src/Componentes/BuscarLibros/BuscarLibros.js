@@ -12,28 +12,21 @@ class BuscarLibros extends Component {
           const { libros } = value
           let listaLibros = null
           if (libros) {
-            if (libros.totalItems === 0) {
+            listaLibros = libros.data.items.map(libro => {
               return (
-                <h1>No se encontraron coincidencias</h1>
+                <div className="col-md-2 m-1">
+                <Libro
+                  imagen={libro.volumeInfo.imageLinks.thumbnail}
+                  descripcion={libro.volumeInfo.description}
+                  titulo={libro.volumeInfo.title}
+                  autor={libro.volumeInfo.authors}
+                  editorial={libro.volumeInfo.publisher}
+                  id={libro.id}
+                  key={libro.id}
+                />
+                </div>
               )
-            } else {
-              listaLibros = libros.data.items.map(libro => {
-                // {console.log(libro.volumeInfo.title)}
-                return (
-                  <div className="col-md-2 m-1">
-                  <Libro
-                    imagen={libro.volumeInfo.imageLinks.thumbnail}
-                    descripcion={libro.volumeInfo.description}
-                    titulo={libro.volumeInfo.title}
-                    autor={libro.volumeInfo.authors}
-                    editorial={libro.volumeInfo.publisher}
-                    id={libro.id}
-                    key={libro.id}
-                  />
-                  </div>
-                )
-              })
-            }            
+            })
           }
           return (
             <div>
