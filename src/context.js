@@ -18,13 +18,13 @@ const reducer = (state, action) => {
         case 'PAGINA_SIGUIENTE':
             return {
                 ...state,
-                indicePagina: state.indicePagina += 1
+                indicePagina: state.indicePagina += 10,
             }
         case 'PAGINA_ANTERIOR':
             if (state.indicePagina !== 0) {
                 return {
                     ...state,
-                    indicePagina: state.indicePagina -= 1
+                    indicePagina: state.indicePagina -= 10
                 }
             } else {
                 return state
