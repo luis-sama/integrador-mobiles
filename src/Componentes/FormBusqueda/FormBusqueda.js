@@ -40,8 +40,9 @@ class FormBusqueda extends Component {
 		if (this.state.textoBusquedaAutor !== '') {url += 'inauthor:' + this.state.textoBusquedaAutor + '+'}
 		if (this.state.textoBusquedaGenero !== '') {url += 'subject:' + this.state.textoBusquedaGenero}
 
-		// axios.get(url) 
-		// .then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
+		axios.get(url) 
+		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
+
 		console.log(url)
 	}
 
@@ -87,11 +88,30 @@ class FormBusqueda extends Component {
 									<label style={{float: 'left'}}>Género</label>
 									<select className="form-control" id="genero" onChange={this.onBusquedaChange}>
 										<option></option>
-										<option>Ciencia ficción</option>
-										<option>Acción</option>
-										<option>Policiales</option>
-										<option>Romance</option>
-										<option>Super Saiyan</option>
+										<option>art</option>
+										<option>photography</option>
+										<option>biographies</option>
+										<option>business</option>
+										<option>money</option>
+										<option>children</option>
+										<option>computers</option>
+										<option>technology</option>
+										<option>food</option>
+										<option>engineering</option>
+										<option>health</option>
+										<option>history</option>
+										<option>law</option>
+										<option>medicine</option>
+										<option>mystery</option>
+										<option>suspense</option>
+										<option>religion</option>
+										<option>romance</option>
+										<option>science</option>
+										<option>science fiction</option>
+										<option>fantasy</option>
+										<option>self help</option>
+										<option>sports</option>
+										<option>travel</option>
 									</select>
 								</div>
 								<div className="col-auto">
