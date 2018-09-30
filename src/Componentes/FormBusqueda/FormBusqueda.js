@@ -34,7 +34,7 @@ class FormBusqueda extends Component {
 		}
 	}
 
-	handleBusqueda = (dispatch) => {
+	handleBusqueda = (dispatch, indicePagina) => {
 		let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 		if (this.state.textoBusquedaTitulo !== '') {url += 'intitle:' + this.state.textoBusquedaTitulo + '+'}
 		if (this.state.textoBusquedaAutor !== '') {url += 'inauthor:' + this.state.textoBusquedaAutor + '+'}
@@ -42,7 +42,7 @@ class FormBusqueda extends Component {
 
 		if(url.charAt(url.length-1) === '+') {url = url.slice(0, -1)}
 
-		url += '&filter=partial'
+		url += '&filter=partial&startIndex=' + indicePagina
 		
 		axios.get(url) 
 		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
@@ -52,10 +52,10 @@ class FormBusqueda extends Component {
 		return (
 			<Consumer>
 				{value => {
-					const { formBusquedaFlag, dispatch } = value;
+					const { formBusquedaFlag, dispatch, indicePagina } = value;
 
 					return (
-						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch)}>
+						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch, indicePagina)}>
 							<div className="card-header" onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}>
 								<h4 style={{float: 'left'}}>Búsqueda avanzada</h4>
 								<i 

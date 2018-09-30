@@ -16,8 +16,8 @@ class BarraBusqueda extends Component {
 		})
 	}
 
-	handleBusqueda = (dispatch) => {
-		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.textoBusqueda)
+	handleBusqueda = (dispatch, indicePagina) => {
+		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.textoBusqueda + '&filter=partial&startIndex=' + indicePagina)
 		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))	
 	}
 
@@ -25,10 +25,10 @@ class BarraBusqueda extends Component {
 		return (
 			<Consumer>
 				{value => {
-					const { barraBusquedaFlag, dispatch } = value;
-
+					const { barraBusquedaFlag, dispatch, indicePagina } = value;
+					console.log(indicePagina)
 					return (
-						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch)}>
+						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch, indicePagina)}>
 							<div className="card-header" onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}>
 							<h4 style={{float: 'left'}}>Búsqueda</h4>
 							<i 

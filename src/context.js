@@ -15,6 +15,20 @@ const reducer = (state, action) => {
                 ...state,
                 libros: action.payload
             }
+        case 'PAGINA_SIGUIENTE':
+            return {
+                ...state,
+                indicePagina: state.indicePagina += 1
+            }
+        case 'PAGINA_ANTERIOR':
+            if (state.indicePagina !== 0) {
+                return {
+                    ...state,
+                    indicePagina: state.indicePagina -= 1
+                }
+            } else {
+                return state
+            }
         default:
             return state;
     }
@@ -24,6 +38,7 @@ export class Provider extends Component {
         barraBusquedaFlag: true,
         formBusquedaFlag: false,
         libros: null,
+        indicePagina: 0,
         dispatch: action => this.setState(state => reducer(state, action))
     }
 
