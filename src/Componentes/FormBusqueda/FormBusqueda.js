@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
-import axios from 'axios';
 
 class FormBusqueda extends Component {
 	constructor() {
