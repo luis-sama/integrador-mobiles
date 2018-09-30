@@ -12,14 +12,13 @@ class BarraBusqueda extends Component {
 
 	onBusquedaChange = e => {
 		this.setState({
-			textoBusqueda: e.target.value,
+			textoBusqueda: e.target.value.split(' ').join('+'),
 		})
 	}
 
 	handleBusqueda = (dispatch) => {
-		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.textoBusqueda.split(' ').join('+'))
-		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))
-		
+		axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.state.textoBusqueda)
+		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))	
 	}
 
 	render() {
@@ -30,11 +29,10 @@ class BarraBusqueda extends Component {
 
 					return (
 						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch)}>
-							<div className="card-header">
+							<div className="card-header" onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}>
 							<h4 style={{float: 'left'}}>Búsqueda</h4>
 							<i 
-								className="fas fa-sort-down"
-								onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}
+								className="fas fa-sort-down"								
 								style={{float:'right'}}
 							/>
 							</div>

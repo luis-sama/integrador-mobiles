@@ -1,12 +1,48 @@
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 class FormBusqueda extends Component {
 	constructor() {
 		super();
 		this.state = {
-			mostrarForm: false,
+			textoBusquedaTitulo: '',
+			textoBusquedaAutor: '',
+			textoBusquedaGenero: ''
 		}
+	}
+
+	onBusquedaChange = e => {
+		switch (e.target.id) {
+			case 'titulo':
+				this.setState({
+					textoBusquedaTitulo: e.target.value.split(' ').join('+'),
+				})
+				break;
+			case 'autor':
+				this.setState({
+					textoBusquedaAutor: e.target.value.split(' ').join('+'),
+				})
+				break;
+			case 'genero':
+				this.setState({
+					textoBusquedaGenero: e.target.value.split(' ').join('+'),
+				})
+				break;
+			default:
+				null
+		}
+	}
+
+	handleBusqueda = (dispatch) => {
+		let url = 'https://www.googleapis.com/books/v1/volumes?q=';
+		if (this.state.textoBusquedaTitulo !== '') {url += 'intitle:' + this.state.textoBusquedaTitulo + '+'}
+		if (this.state.textoBusquedaAutor !== '') {url += 'inauthor:' + this.state.textoBusquedaAutor + '+'}
+		if (this.state.textoBusquedaGenero !== '') {url += 'subject:' + this.state.textoBusquedaGenero}
+
+		// axios.get(url) 
+		// .then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
+		console.log(url)
 	}
 
 	render() {
@@ -16,28 +52,41 @@ class FormBusqueda extends Component {
 					const { formBusquedaFlag, dispatch } = value;
 
 					return (
-						<form className="card card-sm mb-1" >
-							<div className="card-header">
+						<form className="card card-sm mb-1" onSubmit={this.handleBusqueda.bind(this, dispatch)}>
+							<div className="card-header" onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}>
 								<h4 style={{float: 'left'}}>Búsqueda avanzada</h4>
 								<i 
 									className="fas fa-sort-down"
-									onClick={() => dispatch({type: 'MOSTRAR_FORM_BUSQUEDA'})}
 									style={{float:'right'}}
 								/>
 							</div>
 
 							{ formBusquedaFlag ? (<div className="card-body ">
 								<div className="form-group">
-									<label style={{float: 'left'}}>Escribí un título</label>
-									<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Título"/>
+									<label style={{float: 'left'}}>Título</label>
+									<input
+										type="text" 
+										className="form-control" 
+										id="titulo" 
+										aria-describedby="emailHelp" 
+										placeholder="Búsqueda por título" 
+										onChange={this.onBusquedaChange}
+									/>
 								</div>
 								<div className="form-group">
-									<label style={{float: 'left'}}>Ingresá un autor</label>
-									<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Autor"/>
+									<label style={{float: 'left'}}>Autor</label>
+									<input 
+										type="text" 
+										className="form-control" 
+										id="autor" 
+										placeholder="Búsqueda por autor"
+										onChange={this.onBusquedaChange}
+									/>
 								</div>
 								<div className="form-group">
 									<label style={{float: 'left'}}>Género</label>
-									<select className="form-control" id="exampleFormControlSelect1">
+									<select className="form-control" id="genero" onChange={this.onBusquedaChange}>
+										<option></option>
 										<option>Ciencia ficción</option>
 										<option>Acción</option>
 										<option>Policiales</option>
