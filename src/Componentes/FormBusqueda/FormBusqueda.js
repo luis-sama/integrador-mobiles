@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 class FormBusqueda extends Component {
 	constructor() {
@@ -39,6 +40,10 @@ class FormBusqueda extends Component {
 		if (this.state.textoBusquedaAutor !== '') {url += 'inauthor:' + this.state.textoBusquedaAutor + '+'}
 		if (this.state.textoBusquedaGenero !== '') {url += 'subject:' + this.state.textoBusquedaGenero}
 
+		if(url.charAt(url.length-1) === '+') {url = url.slice(0, -1)}
+		
+		url += '&filter=partial'
+		
 		axios.get(url) 
 		.then(resp => dispatch({type: 'GET_LIBROS', payload: resp}))			
 
@@ -87,30 +92,19 @@ class FormBusqueda extends Component {
 									<label style={{float: 'left'}}>Género</label>
 									<select className="form-control" id="genero" onChange={this.onBusquedaChange}>
 										<option></option>
-										<option>art</option>
-										<option>photography</option>
-										<option>biographies</option>
-										<option>business</option>
-										<option>money</option>
-										<option>children</option>
-										<option>computers</option>
-										<option>technology</option>
-										<option>food</option>
-										<option>engineering</option>
-										<option>health</option>
-										<option>history</option>
-										<option>law</option>
-										<option>medicine</option>
-										<option>mystery</option>
-										<option>suspense</option>
-										<option>religion</option>
+										<option>arte</option>
+										<option>ciencia</option>
+										<option>deportes</option>
+										<option>fotografía</option>
+										<option>historia</option>
+										<option>ingeniería</option>
+										<option>medicina</option>
+										<option>negocios</option>
+										<option>niños</option>
 										<option>romance</option>
-										<option>science</option>
-										<option>science fiction</option>
-										<option>fantasy</option>
-										<option>self help</option>
-										<option>sports</option>
-										<option>travel</option>
+										<option>salud</option>
+										<option>tecnología</option>
+										<option>viajes</option>
 									</select>
 								</div>
 								<div className="col-auto">
