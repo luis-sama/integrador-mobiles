@@ -5,14 +5,18 @@ import Libro from '../Libro/Libro';
 import { Consumer } from '../../context';
 
 class BuscarLibros extends Component {
+  pasarPagina = () => {
+
+  }
   render() {
     return (
       <Consumer>
         {value => {
-          const { libros } = value
+          const { libros, dispatch } = value
           let listaLibros = null
           if (libros) {
             if (libros.data.totalItems !== 0) {
+              console.log(libros)
               listaLibros = libros.data.items.map(libro => {
                 return (
                   <div className="col-md-2 m-1">
@@ -40,6 +44,8 @@ class BuscarLibros extends Component {
               <div className="row justify-content-center">
                 {listaLibros}
               </div>
+              <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_ANTERIOR'})}><i className="fas fa-angle-double-left"/></button>
+              <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_SIGUIENTE'})}><i className="fas fa-angle-double-right"/></button>
             </div>
           )
         }}
