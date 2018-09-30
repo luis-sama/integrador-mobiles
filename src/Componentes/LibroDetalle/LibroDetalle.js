@@ -2,22 +2,22 @@ import React from 'react';
 
 const LibroDetalle = props => {
   return (
-    <div class="row justify-content-center">
-      <div class="col-md-4">
-        <img class="card-img-top" src={props.imagen} alt="Tapa del libro"/>
+    <div className="row justify-content-center">
+      <div className="col-md-4">
+        <img className="card-img-top" src={props.imagen} alt="Tapa del libro"/>
       </div>
 
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">
+      <div className="col-md-4">
+        <div className="card">
+          <div className="card-header">
             {props.titulo}
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Autor: {props.autor}</li>
-            <li class="list-group-item">Editorial: {props.editorial}</li>
-            <li class="list-group-item">Páginas: {props.paginas}</li>
-            <li class="list-group-item">Categoría/s: {props.categoria}</li>
-            <li class="list-group-item">Puntación: {props.puntuacion}</li>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">Autor: {props.autor}</li>
+            <li className="list-group-item">Editorial: {props.editorial}</li>
+            <li className="list-group-item">Páginas: {props.paginas}</li>
+            <li className="list-group-item">Categoría/s: {props.categoria}</li>
+            <li className="list-group-item">Puntación: {props.puntuacion}</li>
           </ul>
         </div>
       </div>
