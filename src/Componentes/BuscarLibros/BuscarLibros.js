@@ -7,7 +7,7 @@ import { Consumer } from '../../context';
 class BuscarLibros extends Component {
   render() {
     return (
-      <Consumer>        
+      <Consumer>
         {value => {
           const { libros } = value
           let listaLibros = null
@@ -21,6 +21,7 @@ class BuscarLibros extends Component {
                   titulo={libro.volumeInfo.title}
                   autor={libro.volumeInfo.authors[0]}
                   editorial={libro.volumeInfo.publisher}
+                  id={libro.id}
                   key={libro.id}
                 />
               )
@@ -30,7 +31,9 @@ class BuscarLibros extends Component {
             <div>
               <BarraBusqueda/>
               <FormBusqueda/>
-              {listaLibros}
+              <div className="row justify-content-center">
+                <div className="col-md-3">{listaLibros}</div>
+              </div>
             </div>
           )
         }}
