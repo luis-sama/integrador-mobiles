@@ -35,9 +35,22 @@ class CompartirLibro extends Component {
   onChange = e => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value,
-      urlRef: 'mailto:' + this.state.correoDestino + '?subject=' + this.state.nombre + '%20' + this.state.apellido + '&body=Encontré éste libro en libro-sama: ' + this.state.enlace 
+      [name]: value, 
     })
+  }
+
+  enviarMail = () => {
+    if (this.state.correoDestino) {
+    this.setState({
+      urlRef: 'mailto:' + this.state.correoDestino + 
+      '?subject=' 
+      + this.state.nombre + '%20' 
+      + this.state.apellido 
+      + '&body=Encontré éste libro en libro-sama: ' 
+      + this.state.enlace})
+    } else {
+      this.setState({urlRef: false})
+    }
   }
 
 
@@ -100,7 +113,7 @@ class CompartirLibro extends Component {
           />
         </div>        
 
-        <button className="btn btn-success mt-2"><a href={this.state.urlRef} target="_blank">Enviar mail</a></button>
+        <a className="btn btn-success mt-2" onClick={this.enviarMail} href={this.state.urlRef} target="_blank">Enviar mail</a>
         </div>
         </div>
       </form>
