@@ -1,6 +1,6 @@
 <h1>TP Integrador Nº1 para la asignatura Aplicaciones Móviles.</h1>
 
-<p>Pasos para correr la aplicación hay que abrir la consola y escribir los siguientes pasos:<p>
+<p>Para correr la aplicación hay que abrir la consola y escribir los siguientes pasos:<p>
   <ul>
     <li>1) git clone https://github.com/samaproject/integrador-mobiles</li>
     <li>2) cd integrador-mobiles</li>
