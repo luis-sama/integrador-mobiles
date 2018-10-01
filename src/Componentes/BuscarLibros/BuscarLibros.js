@@ -36,7 +36,6 @@ class BuscarLibros extends Component {
                 <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_ANTERIOR'})}><i className="fas fa-angle-double-left"/></button>
               <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_SIGUIENTE'})}><i className="fas fa-angle-double-right"/></button>
               </div>
-              
             } else {
               listaLibros = <h1>No se encontraron coincidencias</h1>
             }
