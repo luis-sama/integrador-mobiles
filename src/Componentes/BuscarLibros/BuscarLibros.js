@@ -14,9 +14,9 @@ class BuscarLibros extends Component {
         {value => {
           const { libros, dispatch } = value
           let listaLibros = null
+          let botones = null
           if (libros) {
             if (libros.data.totalItems !== 0) {
-              console.log(libros)
               listaLibros = libros.data.items.map(libro => {
                 return (
                   <div className="col-md-2 m-1">
@@ -32,10 +32,14 @@ class BuscarLibros extends Component {
                   </div>
                 )
               })
+              botones = <div>
+                <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_ANTERIOR'})}><i className="fas fa-angle-double-left"/></button>
+              <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_SIGUIENTE'})}><i className="fas fa-angle-double-right"/></button>
+              </div>
+              
             } else {
               listaLibros = <h1>No se encontraron coincidencias</h1>
             }
-              
           }
           return (
             <div>
@@ -44,8 +48,7 @@ class BuscarLibros extends Component {
               <div className="row justify-content-center">
                 {listaLibros}
               </div>
-              <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_ANTERIOR'})}><i className="fas fa-angle-double-left"/></button>
-              <button className="btn btn-lg btn-success" onClick={() => dispatch({type: 'PAGINA_SIGUIENTE'})}><i className="fas fa-angle-double-right"/></button>
+              {botones}
             </div>
           )
         }}
