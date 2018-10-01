@@ -4,11 +4,11 @@ import LibroDetalle from '../LibroDetalle/LibroDetalle';
 
 class CompartirLibro extends Component {
   state = {
-    correoEmisor: '',
     correoDestino:'',
     nombre: '',
     apellido: '',
     enlace:'',
+    urlRef: '',
     libroData: <LibroDetalle />
   }
 
@@ -35,13 +35,11 @@ class CompartirLibro extends Component {
   onChange = e => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      urlRef: 'mailto:' + this.state.correoDestino + '?subject=' + this.state.nombre + '%20' + this.state.apellido + '&body=Encontré éste libro en libro-sama: ' + this.state.enlace 
     })
   }
 
-  onSubmit = () => {
-    alert('hola')
-    }
 
   render() {
     return (
@@ -54,7 +52,7 @@ class CompartirLibro extends Component {
         <div className="col-md-8">{this.state.error}</div>
       </div>
 
-      <form onSubmit={this.onSubmit.bind(this)}>
+      <form>
         <div className="row justify-content-center mt-2">
         <div className="col-md-6">
 
@@ -69,19 +67,6 @@ class CompartirLibro extends Component {
           />
         </div>
         
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">Correo emisor</span>
-          </div>
-          <input 
-            type="email" 
-            className="form-control" 
-            name="correoEmisor" 
-            value={this.state.correoEmisor}
-            onChange={this.onChange}
-          />
-        </div>
-
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">Correo destino</span>
@@ -115,7 +100,7 @@ class CompartirLibro extends Component {
           />
         </div>        
 
-        <input className="btn btn-success mt-2" value="Enviar mail" type="submit"/>
+        <button className="btn btn-success mt-2"><a href={this.state.urlRef} target="_blank">Enviar mail</a></button>
         </div>
         </div>
       </form>
